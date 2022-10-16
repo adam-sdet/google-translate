@@ -1,27 +1,6 @@
+Selenium - Google Translate 
 
-
-TASK
-
-1. Based on Page Object Model, create automated test for the scenario: Using Google Translate application (https://translate.google.com/)
-
-▪ select source language from the drop-down menu on the left
-
-▪ select translation language from the drop-down menu on the right
-
-▪ enter the initial text in the input field on the left
-
-▪ make sure that the actual translation result in the right field is correct
-
-Source, Translation languages, initial text and expected result should be taken from a separate  data file (.json, .yaml, or .xlsx), for example (but not necessarily the exact word!):
-
-▪ source language: German
-
-▪ translation language: Spanish
-
-▪ initial text: "Demokratien"
-
-▪ expected result: "Democracias"
-
-2. Add scenario: click swap languages button and verify the result.
-
-3. Add scenario: clear the input field, click "select input tool" button, select "screen keyboard" and  enter "Hi!" 
+Technologies:
+-Selenium
+-Java
+-JUnit
