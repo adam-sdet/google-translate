@@ -25,9 +25,9 @@ public class GoogleTranslateTest {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     ExcelReader excelReader =new ExcelReader();
     JavascriptExecutor jse = (JavascriptExecutor) driver;
-    String sourceFilePath = "src/test/resources/xlsx/SourceText.xlsx";
-    String translatedFilePath = "src/test/resources/xlsx/TranslatedText.xlsx";
-    String languagesFilePath = "src/test/resources/xlsx/Languages.xlsx";
+    String sourceFilePath = ConfigurationReader.getProperty("sourceFilePath");
+    String translatedFilePath = ConfigurationReader.getProperty("translatedFilePath");
+    String languagesFilePath = ConfigurationReader.getProperty("languagesFilePath");
 
 
     @BeforeAll
