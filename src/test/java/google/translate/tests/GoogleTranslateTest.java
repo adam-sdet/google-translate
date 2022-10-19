@@ -17,6 +17,7 @@ public class GoogleTranslateTest {
 
   TranslatePage translatePage = new TranslatePage();
     private WebDriver driver = Driver.getDriver();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     JavascriptExecutor jse = (JavascriptExecutor) driver;
     String sourceLanguage = "&sl=" + "az";
     String targetLanguage = "&tl=" + "en";
@@ -31,21 +32,32 @@ public class GoogleTranslateTest {
         assertEquals("Google Translate", title);
 
         translatePage.sourceText.sendKeys("Salam");
+        System.out.println("translated text is: " + translatePage.translatedText.getText());
 
-//        WebElement sourceLanguage = translatePage.selectSourceLanguage("Azerbaijani");
-//        jse.executeScript("arguments[0].click();", sourceLanguage);
-//
-//        Thread.sleep(5000);
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        wait.until(ExpectedConditions.elementToBeClickable(translatePage.moreTargetLanguages));
-//        jse.executeScript("arguments[0].click();", translatePage.moreTargetLanguages);
-//        Thread.sleep(5000);
-//
-//        WebElement targetLanguage = translatePage.selectTargetLanguage("Turkish");
-//        jse.executeScript("arguments[0].click();", targetLanguage);
+        assertEquals("Hello", translatePage.translatedText.getText());
+
+        translatePage.swapLanguages.click();
+
+        wait.until(ExpectedConditions.textToBePresentInElement(translatePage.translatedText, "Salam"));
+        System.out.println("swapped translated text is: " + translatePage.translatedText.getText());
+        assertEquals("Salam", translatePage.translatedText.getText());
 
 
-//         Driver.closeDriver();
+
+        // TODO  selectTargetLanguage method is not working properly
+        /*
+        WebElement sourceLanguage = translatePage.selectSourceLanguage("German");
+        jse.executeScript("arguments[0].click();", sourceLanguage);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(translatePage.moreTargetLanguages));
+        jse.executeScript("arguments[0].click();", translatePage.moreTargetLanguages);
+
+        WebElement targetLanguage = translatePage.selectTargetLanguage("Spanish");
+        jse.executeScript("arguments[0].click();", targetLanguage);
+        */
+
+         Driver.closeDriver();
 
     }
 
