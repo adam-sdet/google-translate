@@ -34,8 +34,8 @@ public class GoogleTranslateTest {
     public void init() {
         String sourceLanguageCode = excelReader.readCellData(1, 1, languagesFilePath);
         String translatedLanguageCode = excelReader.readCellData(2, 1, languagesFilePath);
-        String sourceLanguage = "&sl=" + sourceLanguageCode;
-        String targetLanguage = "&tl=" + translatedLanguageCode;
+        String sourceLanguage = ConfigurationReader.getProperty("sourceLanguageParam") + sourceLanguageCode;
+        String targetLanguage = ConfigurationReader.getProperty("targetLanguage")  + translatedLanguageCode;
         driver.get(ConfigurationReader.getProperty("google-translate") + sourceLanguage + targetLanguage);
     }
 
@@ -50,6 +50,7 @@ public class GoogleTranslateTest {
         System.out.println("translated text is: " + translatePage.translatedText.getText());
 
         String translatedText = excelReader.readCellData(1, 1, translatedFilePath);
+        wait.until(ExpectedConditions.textToBePresentInElement(translatePage.translatedText, translatedText));
         assertEquals(translatedText, translatePage.translatedText.getText());
 
         translatePage.swapLanguages.click();
